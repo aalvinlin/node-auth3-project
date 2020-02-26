@@ -22,4 +22,4 @@ function accessCheck (req, res, next) {
         }
 }
 
-module.exports(accessCheck);
+module.exports = accessCheck;
