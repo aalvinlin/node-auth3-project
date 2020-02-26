@@ -5,5 +5,8 @@ module.exports = {
 }
 
 function getAllUsers() {
-    return database("users");
+    return database("users")
+        .join("departments", "users.id", "=", "departments.id")
+        .select("users.id", "users.username", "departments.name as department")
+        .orderBy("users.id");
 }
