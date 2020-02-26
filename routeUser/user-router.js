@@ -1,10 +1,11 @@
 const express = require("express");
 
 const database = require("./user-model.js");
+const restrictedView = require("./restricted-view");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", restrictedView, (req, res) => {
 
     database.getAllUsers()
         .then(users =>
