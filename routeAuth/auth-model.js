@@ -6,7 +6,8 @@ module.exports = {
 }
 
 function addUser(user) {
-    return database.insert(user);
+    return database("users")
+        .insert(user);
 }
 
 function getUser(query) {
