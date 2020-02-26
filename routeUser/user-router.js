@@ -4,7 +4,7 @@ const database = require("./user-model.js");
 
 const router = express.Router();
 
-router.post("/users", (req, res) => {
+router.get("/", (req, res) => {
 
     database.getAllUsers()
         .then(users =>
