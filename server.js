@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const authRouter = require("./routeAuth/auth-router.js");
-// const userRouter = require("./routeUser/user-router.js");
+const userRouter = require("./routeUser/user-router.js");
 
 const server = express();
 
@@ -16,7 +16,8 @@ const serverConfig = {
 server.use(express.json());
 server.use(cors(serverConfig));
 
-server.use("/api/auth", authRouter)
+server.use("/api/auth", authRouter);
+server.use("/api/users", userRouter);
 
 server.get("/", (req, res) => {
     res.status(200).json({message: "User database running."});
