@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const bcrypt = require("bcryptjs");
 
-const iterations = parseInt(process.env.BCRYPT_ITERATIONS) || 14;
+const iterations = require("../imports/bcryptIterations").bcryptIterations;
 
 exports.seed = function(knex) {
     
