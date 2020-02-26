@@ -1,11 +1,11 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 
-const database = require("./auth-router.js");
+const database = require("./auth-model.js");
 
 const router = express.Router();
 
-router.get("/auth/signup", (req, res) => {
+router.post("/signup", (req, res) => {
 
     if (!req.body || !req.body.username || !req.body.password)
         { res.status(400).json({message: "Username and password are both required."}) }
@@ -16,7 +16,7 @@ router.get("/auth/signup", (req, res) => {
 
             database.addUser(req.body)
                 .then(usersAdded =>
-                    res.status(201).json({message: "Created " + usersAdded + " acocunt for " + req.body.username})
+                    res.status(201).json({message: "Created " + usersAdded + " account for " + req.body.username})
                 )
                 .catch(({stack, message}) =>
                     res.status(500).json({error: "Could not create user:", stack, message})

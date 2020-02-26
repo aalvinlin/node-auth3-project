@@ -16,6 +16,8 @@ const serverConfig = {
 server.use(express.json());
 server.use(cors(serverConfig));
 
+server.use("/api/auth", authRouter)
+
 server.get("/", (req, res) => {
     res.status(200).json({message: "User database running."});
 })
