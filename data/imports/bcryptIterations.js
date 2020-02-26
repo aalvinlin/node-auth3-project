@@ -1,3 +1,3 @@
 module.exports = {
-    bcryptIterations: parseInt(process.env.BCRYPT_ITERATIONS) || 14
+    bcryptIterations: (process.env.BCRYPT_ITERATIONS && parseInt(process.env.BCRYPT_ITERATIONS)) || 14
 }
