@@ -16,6 +16,7 @@ function accessCheck (req, res, next) {
                 else
                     {
                         req.decodedToken = decodedToken;
+                        console.log("created req.decodedToken:", req.decodedToken)
                         next();
                     }
             })

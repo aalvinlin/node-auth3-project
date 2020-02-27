@@ -17,6 +17,9 @@ router.post("/signup", (req, res) => {
             let hashedPassword = bcrypt.hashSync(req.body.password, iterations);
             req.body.password = hashedPassword;
 
+            if (user.department)
+                { req.body.department = user.department; }
+                
             const token = generateToken(req.body);
 
             database.addUser(req.body)
@@ -41,7 +44,9 @@ router.post("/login", (req, res) => {
 
                     if (user && bcrypt.compareSync(req.body.password, user.password))
                         {
+                            req.body.department = user.department;
                             const token = generateToken(req.body);
+
                             res.status(201).json({message: "Logged in " + req.body.username, token})        
                         }
                     else
@@ -56,6 +61,9 @@ router.post("/login", (req, res) => {
     })
 
 function generateToken(user) {
+
+    console.log("user", user);
+
     const payload = {
         subject: user.id,
         username: user.username,

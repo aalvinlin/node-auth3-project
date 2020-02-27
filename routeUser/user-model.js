@@ -1,7 +1,8 @@
 const database = require("../data/db-config");
 
 module.exports = {
-    getAllUsers
+    getAllUsers,
+    getUsersByDepartment
 }
 
 function getAllUsers() {
@@ -11,11 +12,13 @@ function getAllUsers() {
         .orderBy("users.id");
 }
 
-function getUsersByDepartment() {
+function getUsersByDepartment(department) {
+
+    console.log("checking department,", department)
 
     return database("users")
         .leftJoin("departments", "users.department", "=", "departments.id")
         .select("users.id", "users.username", "departments.name as department")
-        .where("users.department", "=", req.decodedToken.department)
+        .where("users.department", "=", department)
         .orderBy("users.id");
 }
